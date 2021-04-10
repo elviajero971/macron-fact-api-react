@@ -1,0 +1,31 @@
+@import "../../scss/theme";
+@import "../../scss/layout";
+@import "../../scss/animationBtnNavBar";
+
+// css display mobile
+
+.content{
+  overflow-y: auto;
+  background-color: $lightColor;
+}
+
+// css display tablet
+
+@media (min-width: $breakpoint-mobile) {
+  .content{
+    height: calc(100vh - #{$header-height} - #{$footer-height});
+    overflow-y: auto;
+  }
+}
+
+// css display desktop
+
+@media (min-width: $breakpoint-tablet) {
+  .content{
+    padding: $paddingSimple;
+    height: $height-display-quote-desktop;
+    justify-content: space-around;
+  }
+}
+
+

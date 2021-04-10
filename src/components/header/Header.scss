@@ -1,0 +1,9 @@
+@import "../../scss/theme";
+@import "../../scss/layout";
+@import "../../scss/animationBtnNavBar";
+
+.header{
+  background-color: $secondaryColor;
+  height: $header-height;
+  flex-direction: column;
+}
