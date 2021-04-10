@@ -3,7 +3,7 @@ import "./Footer.scss";
 function Footer() {
   return (
     <div className="footer">
-      <div class="footer-content">
+      <div className="footer-content">
         <p>Macron Fact App 2021 by @elviajero</p>
       </div>
     </div>

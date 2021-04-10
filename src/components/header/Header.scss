@@ -6,4 +6,103 @@
   background-color: $secondaryColor;
   height: $header-height;
   flex-direction: column;
+  .header-content{
+    padding: $paddingSimple;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    .header-icon{
+      @include buttonNavBar;
+      padding-right: $paddingSimple;
+    }
+    .header-list{
+      display: none;
+    }
+  }
+  #toggle-header{
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    position: relative;
+    .header-item{
+      height: 40px;
+      background-color: $lightGrey;
+    }
+    &.active{
+      display: flex;
+      .header-item{
+        @include fontSize-mobile;
+        flex-direction: column;
+        .author-link{
+          &.hide{
+            display:none;
+          }
+        }
+        .display-author-link{
+          display:none;
+          width:100%;
+          &.show{
+            display:flex;
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+  .search-bar{
+    height: 80%;
+    flex: 1;
+    background-color: $lightColor;
+    border-radius: $round-size-small;
+    padding: 0 $paddingDouble;
+  }
+}
+
+// css display tablet
+
+@media (min-width: $breakpoint-mobile) {
+  .header{
+    .header-content{
+      height: 100%;
+      .header-icon{
+        display: none;
+      }
+      .header-list{
+        display: flex;
+        align-items: center;
+        height: 100%;
+        .header-item{
+          @include fontSize-tablet;
+          align-items: center;
+          justify-content: center;
+          width: 10vw;
+          margin-right: $paddingSimple;
+          color: $lightGrey;
+          background-color: $primaryColor;
+          border-radius: $round-size-small;
+          height: 60%;
+        }
+      }
+      .search-bar{
+        height: 80%;
+        width: 300px;
+      }
+    }
+    .toggle-header-item{
+      display: none;
+    }
+  }
+}
+
+// css display desktop
+@media (min-width: $breakpoint-tablet) {
+  .header{
+    .header-content{
+      .header-list{
+        .header-item{
+          @include fontSize-desktop;
+        }
+      }
+    }
+  }
 }

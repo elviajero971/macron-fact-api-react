@@ -27,8 +27,10 @@ body * {
 
 // css display tablet
 @media (min-width: $breakpoint-mobile) { 
-  .fa-2x {
-    font-size: 3.5vw;
+  .app {
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
   }
 }
 
@@ -36,6 +38,8 @@ body * {
 
 @media (min-width: $breakpoint-tablet) {
   .app {
-  
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
   }
 }
