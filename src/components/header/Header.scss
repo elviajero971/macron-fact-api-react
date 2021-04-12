@@ -6,55 +6,58 @@
   background-color: $secondaryColor;
   height: $header-height;
   flex-direction: column;
-  .header-content{
+  .desktop{
     padding: $paddingSimple;
     width: 100%;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
-    .header-icon{
+    .icon{
       @include buttonNavBar;
       padding-right: $paddingSimple;
     }
-    .header-list{
+    .list-item-desktop{
       display: none;
     }
   }
-  #toggle-header{
+  .mobile{
     display: none;
-    position: absolute;
     flex-direction: column;
     position: relative;
-    .header-item{
+    .item-mobile{
       height: 40px;
       background-color: $lightGrey;
+      cursor: pointer;
+      a{
+        text-decoration: none;
+        color: $secondaryColor;
+      }
+      .author-item-mobile{
+        height: 40px;
+        background-color: $lightGrey;
+        cursor: pointer;
+        &.hide{
+          display:none;
+        }
+      }
+      .author-list-mobile{
+        display:none;
+        width:100%;
+        @include fontSize-mobile;
+        flex-direction: row;
+        &.show{
+          display:flex;
+          flex-direction: column;
+        }
+        
+      }
+      &.hide{
+        display:none;
+      }
+      
     }
     &.active{
       display: flex;
-      .header-item{
-        @include fontSize-mobile;
-        flex-direction: column;
-        .author-link{
-          &.hide{
-            display:none;
-          }
-        }
-        .display-author-link{
-          display:none;
-          width:100%;
-          &.show{
-            display:flex;
-            flex-direction: column;
-          }
-        }
-      }
     }
-  }
-  .search-bar{
-    height: 80%;
-    flex: 1;
-    background-color: $lightColor;
-    border-radius: $round-size-small;
-    padding: 0 $paddingDouble;
   }
 }
 
@@ -62,33 +65,57 @@
 
 @media (min-width: $breakpoint-mobile) {
   .header{
-    .header-content{
+    .desktop{
+      position: relative;
       height: 100%;
-      .header-icon{
+      .icon{
         display: none;
       }
-      .header-list{
+      .list-item-desktop{
         display: flex;
         align-items: center;
         height: 100%;
-        .header-item{
-          @include fontSize-tablet;
+        .item-desktop{
           align-items: center;
           justify-content: center;
-          width: 10vw;
+          width: 20vw;
           margin-right: $paddingSimple;
           color: $lightGrey;
           background-color: $primaryColor;
           border-radius: $round-size-small;
           height: 60%;
+          cursor: pointer;
+          a{
+            text-decoration: none;
+            color: $secondaryColor;
+            font-size: 2.5vh;
+          }
+          button{
+            border: none;
+            background-color: transparent;
+            font-size: 2.5vh;
+          }
+          flex-direction:column;
+          .author-list{
+            display:none;
+            flex-direction: row;
+            top: 150px;
+            position: absolute;
+            .author-item-desktop{
+              color: $lightGrey;
+              padding-top: $paddingSimple;
+              background-color: $primaryColor;
+              width: 20vw;
+            }
+            &.show{
+              display:flex;
+              flex-direction:column;
+            }
+          }
         }
       }
-      .search-bar{
-        height: 80%;
-        width: 300px;
-      }
     }
-    .toggle-header-item{
+    .mobile{
       display: none;
     }
   }
@@ -97,10 +124,32 @@
 // css display desktop
 @media (min-width: $breakpoint-tablet) {
   .header{
-    .header-content{
+    .desktop{
       .header-list{
         .header-item{
+          color: $lightGrey;
+          background-color: $primaryColor;
           @include fontSize-desktop;
+          &.dropdown-author{
+            position: relative;
+            .header-item{
+              top: 30px;
+              color: red;
+              padding-top: $paddingDouble;
+              align-items: center;
+              justify-content: center;
+              color: $lightGrey;
+              background-color: $primaryColor;
+              height: 100%;
+              cursor: pointer;
+              a{
+                text-decoration: none;
+                color: $secondaryColor;
+                font-size: 2.5vh;
+              }
+            }
+            
+          }
         }
       }
     }

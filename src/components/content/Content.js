@@ -1,13 +1,23 @@
-import React from 'react'
+import React from "react";
+import {Switch, Route, useLocation} from "react-router-dom";
 import "./Content.scss";
 import Banner from "./banner/Banner";
 import ListQuote from "./listquote/ListQuote";
+import HomePage from "./homepage/HomePage";
 function Content() {
+  let location = useLocation();
   return (
     <div className="content">
       <div className="scroll">
         <Banner/>
-        <ListQuote/>
+        <Switch>
+          <Route exact path="/">
+            <HomePage/>
+          </Route>
+          <Route path={location}>
+            <ListQuote/>
+          </Route>
+        </Switch>
       </div>
     </div>
   )
