@@ -4,23 +4,26 @@ import "./Content.scss";
 import Banner from "./banner/Banner";
 import ListQuote from "./listquote/ListQuote";
 import HomePage from "./homepage/HomePage";
-function Content() {
-  let location = useLocation();
+const Content = () => {
+  const location = useLocation();
   return (
     <div className="content">
       <div className="scroll">
-        <Banner/>
+        <Banner />
         <Switch>
-          <Route exact path="/">
-            <HomePage/>
+          <Route
+            exact
+            path="/"
+          >
+            <HomePage />
           </Route>
           <Route path={location}>
-            <ListQuote/>
+            <ListQuote />
           </Route>
         </Switch>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Content
+export default Content;

@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
 
-function HomePage() {
+const HomePage = () => {
   return (
     <div className="homepage">
-      <p>Please click on a catogery on the menu</p>
+      <p>
+        {"Please click on a catogery on the menu"}
+      </p>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

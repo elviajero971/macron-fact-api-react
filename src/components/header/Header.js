@@ -1,24 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from "react";
 import "./Header.scss";
 import {Link} from "react-router-dom";
-function Header() {
+const Header = () => {
   const [openBurger, setOpenBurger] = useState(false);
-  const openBurgerFunction = () =>{
-    openBurger === false ? setOpenBurger(true) : setOpenBurger(false);
-    console.log("openBurgerFunction");
-  }
-  
+  const openBurgerFunction = () => {
+    setOpenBurger(!openBurger);
+  };
+
   const [openAuthorMobile, setOpenAuthorMobile] = useState(false);
-  const openAuthorMobileFunction = () =>{
-    openAuthorMobile === false ? setOpenAuthorMobile(true) : setOpenAuthorMobile(false);
-    console.log("function openAuthorMobileFunction");
-  }
+  const openAuthorMobileFunction = () => {
+    setOpenAuthorMobile(!openAuthorMobile);
+  };
 
   const [openAuthorDesktop, setOpenAuthorDesktop] = useState(false);
-  const openAuthorDesktopFunction = () =>{
-    openAuthorDesktop === false ? setOpenAuthorDesktop(true) : setOpenAuthorDesktop(false);
-    console.log("function openAuthorDesktopFunction");
-  }
+  const openAuthorDesktopFunction = (value) => {
+    const val = !value;
+    setOpenAuthorDesktop(val);
+  };
 
   const url = "http://macronfact.antonin-dev.fr/factjson/list";
   const [menuAuthorMobile, setMenuAuthorMobile] = useState();
@@ -30,25 +28,29 @@ function Header() {
     const asyncFunctionLinkAuthor = async() => {
       try {
         const dataListItem = await fetch(url);
-        
+
         const jsonDataListItem = await dataListItem.json();
-        
+
         const jsonData = jsonDataListItem.data;
         jsonData.forEach(value => {
           linkAuthorArrayMobile.push(
-              <button className="author-item-mobile" onClick={openAuthorMobileFunction, openBurgerFunction}>
-                <Link to={`/auteurs/${value}`}>
-                  {value}
-                </Link>
-              </button>
+            <Link
+              className="item"
+              onClick={openAuthorMobileFunction, openBurgerFunction}
+              to={`/auteurs/${value}`}
+            >
+              {value}
+            </Link>
           );
 
           linkAuthorArrayDesktop.push(
-              <button className="author-item-desktop" onClick={openAuthorDesktopFunction}>
-                <Link to={`/auteurs/${value}`}>
-                  {value}
-                </Link>
-              </button>
+            <Link
+              className="item"
+              onClick={() => openAuthorDesktopFunction(true)}
+              to={`/auteurs/${value}`}
+            >
+              {value}
+            </Link>
           );
         });
       } catch (exception) {
@@ -59,41 +61,82 @@ function Header() {
       setMenuAuthorDesktop(linkAuthorArrayDesktop);
     };
     asyncFunctionLinkAuthor();
-  }, [menuAuthorMobile])
-    
+  }, []);
+
   return (
     <div className="header">
       <div className="desktop">
         <div className="icon">
-          <div onClick={openBurgerFunction} className={openBurger === true ? "burger open" : "burger"}>
-            <span></span>
-            <span></span>
-            <span></span>
+          <div
+            className={openBurger === true ? "burger open" : "burger"}
+            onClick={openBurgerFunction}
+          >
+            <span />
+            <span />
+            <span />
           </div>
         </div>
-        <div className="list-item-desktop">
-          <button className="item-desktop"><Link to="/all">All</Link></button>
-          <button className="item-desktop"><Link to="/random">Random</Link></button>
-          <div className="item-desktop">
-            <button class="item-desktop" onClick={openAuthorDesktopFunction}>Authors</button>
-            <div className={openAuthorDesktop === true ? "author-list item-desktop show" : "author-list item-desktop"}>
+        <div className="navbar">
+          <div className="container">
+            <Link
+              className="item"
+              onClick={() => openAuthorDesktopFunction(true)}
+              to="/all"
+            >
+              {"All"}
+            </Link>
+          </div>
+          <div className="container">
+            <Link
+              className="item"
+              onClick={() => openAuthorDesktopFunction(true)}
+              to="/random"
+            >
+              {"Random"}
+            </Link>
+          </div>
+          <div className={openAuthorDesktop ? "container show" : "container"}>
+            <div
+              className="item"
+              onClick={() => openAuthorDesktopFunction(openAuthorDesktop)}
+            >
+              {"Authors"}
+            </div>
+            <div className="list-item">
               {menuAuthorDesktop}
             </div>
           </div>
         </div>
       </div>
       <div className={openBurger === true ? "mobile active" : "mobile"}>
-          <button className="item-mobile" onClick={openBurgerFunction}><Link to="/all">All</Link></button>
-          <button className="item-mobile" onClick={openBurgerFunction}><Link to="/random">Random</Link></button>
-          <button className="item-mobile" onClick={openAuthorMobileFunction}>
-            <div className={openAuthorMobile === true ? "author-item-mobile hide" : "author-item-mobile"}>Authors</div>
-            <div className={openAuthorMobile === true ? "author-list-mobile show" : "author-list-mobile"}>
-              {menuAuthorMobile}
-            </div>
-          </button>
+        <Link
+          className="item-mobile"
+          onClick={openBurgerFunction}
+          to="/all"
+        >
+          {"All"}
+        </Link>
+        <Link
+          className="item-mobile"
+          onClick={openBurgerFunction}
+          to="/random"
+        >
+          {"Random"}
+        </Link>
+        <div
+          className="item-mobile"
+          onClick={openAuthorMobileFunction}
+        >
+          <div className={openAuthorMobile === true ? "author-item-mobile hide" : "author-item-mobile"}>
+            {"Authors"}
+          </div>
+          <div className={openAuthorMobile === true ? "author-list-mobile show" : "author-list-mobile"}>
+            {menuAuthorMobile}
+          </div>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

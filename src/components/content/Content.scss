@@ -7,7 +7,6 @@
 .content{
   overflow-y: auto;
   background-color: $lightColor;
-  height: calc(100vh - #{$header-height} - #{$footer-height});
   .scroll{
     height: auto;
     padding: $paddingSimple;
@@ -19,6 +18,7 @@
 
 @media (min-width: $breakpoint-mobile) {
   .content{
+    flex:1;
     .scroll{
       padding: 0;
       padding-top: $paddingSimple;
@@ -35,11 +35,10 @@
 
 @media (min-width: $breakpoint-tablet) {
   .content{
-    padding: $paddingSimple;
-    height: $height-display-quote-desktop;
     justify-content: space-around;
     .scroll{
-      height: 100%;
+      padding:0;
+      height:100%;
     }
   }
 }

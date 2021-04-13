@@ -24,22 +24,3 @@ body * {
   height: 100vh;
   flex-direction: column;
 }
-
-// css display tablet
-@media (min-width: $breakpoint-mobile) { 
-  .app {
-    width: 100vw;
-    height: 100vh;
-    flex-direction: column;
-  }
-}
-
-// css display desktop
-
-@media (min-width: $breakpoint-tablet) {
-  .app {
-    width: 100vw;
-    height: 100vh;
-    flex-direction: column;
-  }
-}

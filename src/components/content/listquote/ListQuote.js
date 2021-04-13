@@ -2,14 +2,14 @@ import React, {useState, useEffect} from "react";
 import {useLocation} from "react-router-dom";
 import "./ListQuote.scss";
 import Quote from "./quote/Quote";
-function ListQuote(props) {
-  let location = useLocation();
-  let loc = location.pathname;
+const ListQuote = (props) => {
+  const location = useLocation();
+  const loc = location.pathname;
   const url = `http://macronfact.antonin-dev.fr/factjson${loc}`;
-  
+
   const [listQuote, setListQuote] = useState();
   const linkAuthorArray = [];
-  
+
   useEffect(() => {
     const asyncFunctionListQuote = async() => {
       try {
@@ -18,7 +18,7 @@ function ListQuote(props) {
         const jsonData = jsonDataListQuote.data;
         jsonData.forEach(value => {
           linkAuthorArray.push(
-              <Quote data={value}/>
+            <Quote data={value} />
           );
         });
       } catch (exception) {
@@ -27,14 +27,14 @@ function ListQuote(props) {
       setListQuote(linkAuthorArray);
     };
     asyncFunctionListQuote();
-  }, [location])
+  }, [location]);
   return (
     <div className="display-quote">
       <div className="scroll">
         {listQuote}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ListQuote
+export default ListQuote;

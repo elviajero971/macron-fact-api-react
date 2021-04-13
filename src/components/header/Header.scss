@@ -6,35 +6,54 @@
   background-color: $secondaryColor;
   height: $header-height;
   flex-direction: column;
+
   .desktop{
     padding: $paddingSimple;
     width: 100%;
     justify-content: start;
     align-items: center;
+
     .icon{
       @include buttonNavBar;
       padding-right: $paddingSimple;
+
     }
-    .list-item-desktop{
+    .navbar{
       display: none;
     }
   }
+
   .mobile{
     display: none;
     flex-direction: column;
     position: relative;
-    .item-mobile{
-      height: 40px;
+
+    a{
+      &.item-mobile{
+      justify-content: center;
+      align-items:center;
+      @include fontSize-mobile;
+      color: $secondaryColor;
       background-color: $lightGrey;
+      border-bottom: $simpleBorder;
       cursor: pointer;
-      a{
-        text-decoration: none;
-        color: $secondaryColor;
+      text-decoration: none;
+      width: 100%;
+
       }
+    }
+
+    .item-mobile{
       .author-item-mobile{
-        height: 40px;
+        justify-content: center;
+        align-items:center;
+        @include fontSize-mobile;
+        border-bottom: $simpleBorder;
         background-color: $lightGrey;
+        height: 40px;
+        width: 100%;
         cursor: pointer;
+
         &.hide{
           display:none;
         }
@@ -42,21 +61,28 @@
       .author-list-mobile{
         display:none;
         width:100%;
-        @include fontSize-mobile;
         flex-direction: row;
+
+        a{
+          cursor: pointer;
+          text-decoration: none;
+          color: $secondaryColor;
+
+        }
         &.show{
           display:flex;
           flex-direction: column;
+
         }
-        
       }
       &.hide{
         display:none;
+
       }
-      
     }
     &.active{
       display: flex;
+
     }
   }
 }
@@ -64,54 +90,88 @@
 // css display tablet
 
 @media (min-width: $breakpoint-mobile) {
+
   .header{
     .desktop{
       position: relative;
       height: 100%;
+      justify-content: center;
+
       .icon{
         display: none;
       }
-      .list-item-desktop{
+
+      .navbar{
         display: flex;
         align-items: center;
+        justify-content: center;
         height: 100%;
-        .item-desktop{
+
+        >.container{
           align-items: center;
           justify-content: center;
-          width: 20vw;
-          margin-right: $paddingSimple;
-          color: $lightGrey;
-          background-color: $primaryColor;
-          border-radius: $round-size-small;
-          height: 60%;
-          cursor: pointer;
-          a{
-            text-decoration: none;
-            color: $secondaryColor;
-            font-size: 2.5vh;
-          }
-          button{
-            border: none;
-            background-color: transparent;
-            font-size: 2.5vh;
-          }
+          width:200px;
+          height:100%;
           flex-direction:column;
-          .author-list{
-            display:none;
-            flex-direction: row;
-            top: 150px;
-            position: absolute;
-            .author-item-desktop{
-              color: $lightGrey;
-              padding-top: $paddingSimple;
-              background-color: $primaryColor;
-              width: 20vw;
-            }
-            &.show{
-              display:flex;
-              flex-direction:column;
+          overflow-y: hidden;
+          position:relative;
+
+          .item{
+            cursor: pointer;
+            color:$primaryColor;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+          }
+
+          >.item{
+            height:100%;
+            width:100%;
+            font-size: 3vw;
+          }
+          &:after{
+            content:'';
+            display: block;
+            width: 10%;
+            height: 5px;
+            background: $primaryColor;
+            transition: width .3s;
+
+          }
+          &:hover{
+            &:after{
+              width:50%;
             }
           }
+          >a{
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: $primaryColor;
+          }
+
+          >.list-item{
+            display:none;
+            position:absolute;
+            top:100%;
+            flex-direction:column;
+            background-color: $secondaryColor;
+            width:100%;
+            
+
+            >.item{
+              border-bottom: $simpleBorder;
+              text-decoration:none;
+              font-size: 3vw;
+            }
+          }
+          &.show{
+            >.list-item{
+              display:flex;
+            }
+            overflow-y:visible; 
+          }
+          
         }
       }
     }
@@ -123,32 +183,15 @@
 
 // css display desktop
 @media (min-width: $breakpoint-tablet) {
+
   .header{
     .desktop{
-      .header-list{
-        .header-item{
-          color: $lightGrey;
-          background-color: $primaryColor;
-          @include fontSize-desktop;
-          &.dropdown-author{
-            position: relative;
-            .header-item{
-              top: 30px;
-              color: red;
-              padding-top: $paddingDouble;
-              align-items: center;
-              justify-content: center;
-              color: $lightGrey;
-              background-color: $primaryColor;
-              height: 100%;
-              cursor: pointer;
-              a{
-                text-decoration: none;
-                color: $secondaryColor;
-                font-size: 2.5vh;
-              }
+      .navbar{
+        >.container{
+          >.list-item{
+            >.item{
+              font-size: 2vw;
             }
-            
           }
         }
       }
